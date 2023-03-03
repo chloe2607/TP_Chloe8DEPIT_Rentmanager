@@ -1,0 +1,3 @@
+com\epf\rentmanager\servlet\UserListServlet.class
+com\epf\rentmanager\servlet\UserDetailServlet.class
+com\epf\rentmanager\servlet\UserCreateServlet.class

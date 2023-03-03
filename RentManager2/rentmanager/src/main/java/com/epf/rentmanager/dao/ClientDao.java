@@ -55,8 +55,24 @@ public class ClientDao {
 		return id;
 	}
 	
-	public long delete(Client client) throws DaoException {
-		return 0;
+	public void delete(long id) throws DaoException {
+		Client client=new Client();
+		client=this.findById(id);
+
+		try {
+			Connection connection= ConnectionManager.getConnection();
+			PreparedStatement ps = connection.prepareStatement(DELETE_CLIENT_QUERY);
+			ps.setLong(1,client.getIdentifiant());
+			ps.execute();
+			int row =ps.executeUpdate();
+			ps.close();
+			connection.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException();
+		}
+		//return client.getIdentifiant();
 	}
 
 	public Client findById(long id) throws DaoException {

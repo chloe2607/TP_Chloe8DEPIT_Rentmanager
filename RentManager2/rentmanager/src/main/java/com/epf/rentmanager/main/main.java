@@ -38,8 +38,20 @@ public class main{
 
             e.printStackTrace();
         }
+        /*try {
+            System.out.println(ClientService.getInstance().delete(7));
+        } catch (DaoException e) {
 
+            e.printStackTrace();
+        }*/
         try {
+            System.out.println(ClientService.getInstance().compteClient());
+        } catch (DaoException e) {
+
+            e.printStackTrace();
+        }
+
+        /*try {
             System.out.println(VehicleService.getInstance().compteVehicle());
         } catch (DaoException e) {
 
@@ -51,7 +63,7 @@ public class main{
         } catch (DaoException e) {
 
             e.printStackTrace();
-        }
+        }*/
 /*
         try {
             System.out.println(ClientService.getInstance().create(c));

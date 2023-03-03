@@ -14,23 +14,23 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-@WebServlet("/users/details")
-public class UserDetailServlet extends HttpServlet{
+@WebServlet("/users/delete")
+
+public class UserDeleteServlet extends HttpServlet{
     private static final long serialVersionUID = 1L;
     private ClientService clientservice=ClientService.getInstance();
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/details.jsp").forward(request, response);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/list.jsp").forward(request, response);
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        try {
+       /* try {
 
-            request.setAttribute("client", clientservice.findById(Long.parseLong(request.getParameter("id"),10)));
+            request.setAttribute("client", clientservice.delete(Long.parseLong(request.getParameter("id"),10)));
         } catch (DaoException e) {
             throw new RuntimeException(e);
-        }
+        }*/
         this.doGet(request,response);
-       }
+    }
 }

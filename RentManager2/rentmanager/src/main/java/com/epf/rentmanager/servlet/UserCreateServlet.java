@@ -1,5 +1,7 @@
 package com.epf.rentmanager.servlet;
 
+import com.epf.rentmanager.exception.DaoException;
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -14,5 +16,15 @@ public class UserCreateServlet extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/create.jsp").forward(request, response);
+    }
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        try {
+
+            request.setAttribute("client", clientservice.findById(Long.parseLong(request.getParameter("id"),10)));
+        } catch (DaoException e) {
+            throw new RuntimeException(e);
+        }
+        this.doGet(request,response);
     }
 }

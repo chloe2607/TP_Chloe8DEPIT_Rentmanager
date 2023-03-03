@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.epf.rentmanager.dao.ClientDao;
+import com.epf.rentmanager.dao.VehicleDao;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
+import com.epf.rentmanager.model.Vehicle;
 
 public class ClientService {
 
@@ -34,6 +36,18 @@ public class ClientService {
 			throw new DaoException();
 
 		}
+	}
+
+	public void delete(long id) throws DaoException {
+		// TODO: créer un véhicule
+		try {
+			ClientDao.getInstance().delete(id);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new DaoException();
+
+		}
+
 	}
 
 	public Client findById(long id) throws DaoException{

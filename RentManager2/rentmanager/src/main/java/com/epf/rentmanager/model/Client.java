@@ -17,6 +17,13 @@ public class Client {
         dateN=d;
         adresseMail=adm;
     }
+
+    public Client(String nom, String prenom,LocalDate d,String adm ){
+        this.nom=nom;
+        this.prenom=prenom;
+        dateN=d;
+        adresseMail=adm;
+    }
     public Client(){
 
     }

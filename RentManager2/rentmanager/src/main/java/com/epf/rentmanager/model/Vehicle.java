@@ -16,6 +16,12 @@ public class Vehicle {
         //modele=md;
         nb_places=nbP;
     }
+    public Vehicle( String cst, int nbP){
+
+        constructeur=cst;
+        //modele=md;
+        nb_places=nbP;
+    }
     public long getId() {
         return id;
     }

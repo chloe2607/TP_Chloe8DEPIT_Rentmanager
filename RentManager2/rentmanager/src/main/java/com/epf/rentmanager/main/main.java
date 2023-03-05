@@ -44,12 +44,12 @@ public class main{
 
             e.printStackTrace();
         }*/
-        try {
+        /*try {
             System.out.println(ClientService.getInstance().compteClient());
         } catch (DaoException e) {
 
             e.printStackTrace();
-        }
+        }/*
 
         /*try {
             System.out.println(VehicleService.getInstance().compteVehicle());
@@ -141,7 +141,7 @@ public class main{
         } catch (DaoException e) {
 
             e.printStackTrace();
-        }
+        }*/
 
         try {
             System.out.println(ReservationService.getInstance().findAll());
@@ -150,13 +150,26 @@ public class main{
             e.printStackTrace();
         }
 
-        try {
+        /*try {
             System.out.println(ReservationService.getInstance().findResaByVehicleId(9));
         } catch (DaoException e) {
 
             e.printStackTrace();
         }
+*/
+       /* try {
+            System.out.println(ReservationService.getInstance().compteReservation());
+        } catch (DaoException e) {
 
+            e.printStackTrace();
+        }
+
+        try {
+            System.out.println(ReservationService.getInstance().delete());
+        } catch (DaoException e) {
+
+            e.printStackTrace();
+        }
         try {
             System.out.println(ReservationService.getInstance().compteReservation());
         } catch (DaoException e) {

@@ -37,6 +37,17 @@ public class ReservationService {
         }
     }
 
+    public void delete(long id) throws DaoException {
+        // TODO: créer un véhicule
+        try {
+            ReservationDao.getInstance().deleteByClientId(id);
+        } catch (DaoException e) {
+            e.printStackTrace();
+            throw new DaoException();
+
+        }
+
+    }
     public Reservation findResaByVehicleId(long id) throws DaoException{
         try {
             return ReservationDao.getInstance().findResaByVehicleId(id);

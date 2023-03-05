@@ -25,7 +25,8 @@
                     <!-- Horizontal Form -->
                     <div class="box">
                         <!-- form start -->
-                        <form class="form-horizontal" method="post" action="/users/create">
+                        <form class="form-horizontal" method="post" >
+
                             <div class="box-body">
                                 <div class="form-group">
                                     <label for="last_name" class="col-sm-2 control-label">Nom</label>
@@ -42,6 +43,13 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                     <label for="date_nais" class="col-sm-2 control-label">Date de naissance</label>
+
+                                     <div class="col-sm-10">
+                                          <input type="date" class="form-control" id="date_nais" name="date_nais" placeholder="Date de Naissance">
+                                     </div>
+                                </div>
+                                <div class="form-group">
                                     <label for="email" class="col-sm-2 control-label">Email</label>
 
                                     <div class="col-sm-10">
@@ -50,6 +58,7 @@
                                 </div>
                             </div>
                             <!-- /.box-body -->
+
                             <div class="box-footer">
                                 <button type="submit" class="btn btn-info pull-right">Ajouter</button>
                             </div>

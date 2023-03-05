@@ -1,8 +1,11 @@
 package com.epf.rentmanager.servlet;
 
+
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.model.Client;
+import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.service.ClientService;
+import com.epf.rentmanager.service.VehicleService;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -12,26 +15,24 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-@WebServlet("/users/create")
-
-public class UserCreateServlet extends HttpServlet{
+@WebServlet("/vehicles/create")
+public class VehiclesCreateServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private ClientService clientservice=ClientService.getInstance();
-    private Client c;
+    private VehicleService vehicleservice=VehicleService.getInstance();
+    private Vehicle v;
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/create.jsp").forward(request, response);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/views/vehicles/create.jsp").forward(request, response);
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
-            String nom=request.getParameter("last_name");
-            String prenom=request.getParameter("first_name");
-            LocalDate dateN = LocalDate.parse(request.getParameter("date_nais"));
-            String email=request.getParameter("email");
-           c=new Client(nom,prenom, dateN,email);
+            String constructeur=request.getParameter("constructeur");
+           int nb_places = Integer.parseInt(request.getParameter("seats"));
 
-            request.setAttribute("client", clientservice.create(c));
+            v=new Vehicle(constructeur, nb_places);
+
+            request.setAttribute("vehicle", vehicleservice.create(v));
         } catch (DaoException e) {
             throw new RuntimeException(e);
         }

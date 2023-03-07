@@ -23,6 +23,13 @@ public Reservation(Vehicle v, Client c, LocalDate f, LocalDate d, long id){
     id=id;
 }
 
+    public Reservation(Vehicle v, Client c, LocalDate f, LocalDate d){
+        vehicle =v;
+        client =c;
+        fin=f;
+        debut=d;
+
+    }
     public long getId() {
         return id;
     }

@@ -4,6 +4,7 @@ package com.epf.rentmanager.service;
 
 import com.epf.rentmanager.dao.ClientDao;
 import com.epf.rentmanager.dao.ReservationDao;
+import com.epf.rentmanager.dao.VehicleDao;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Reservation;
@@ -84,5 +85,27 @@ public class ReservationService {
             throw new DaoException();
 
         }
+    }
+
+    public int compteReservationIdClient(long id) throws DaoException {
+        try {
+            return ReservationDao.getInstance().compteReservationIdClient(id);
+        } catch (DaoException e) {
+            e.printStackTrace();
+            throw new DaoException();
+
+        }
+
+    }
+
+    public List<Reservation>findAllIdC(long idC)  throws DaoException {
+        try {
+            return ReservationDao.getInstance().findAllIdC(idC) ;
+        } catch (DaoException e) {
+            e.printStackTrace();
+            throw new DaoException();
+
+        }
+
     }
 }

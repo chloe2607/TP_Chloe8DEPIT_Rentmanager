@@ -71,13 +71,13 @@
                                         <tr>
                                             <th style="width: 10px">#</th>
                                             <th>Constructeur</th>
-                                            <th style=>Nombre de places</th>
+                                            <th>Nombre de places</th>
                                         </tr>
                                         <c:forEach items="${Vehicles}" var="voiture">
                                         <tr>
-                                        <td>${voiture.vehicle.id}</td>
-                                         <td>${voiture.vehicle.constructeur}</td>
-                                         <td>${voiture.vehicle.nb_places}</td>
+                                        <td>${voiture.id}</td>
+                                         <td>${voiture.constructeur}</td>
+                                         <td>${voiture.nb_places}</td>
                                           </tr>
                                          </c:forEach>
 

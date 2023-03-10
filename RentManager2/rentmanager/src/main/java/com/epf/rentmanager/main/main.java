@@ -95,13 +95,13 @@ public class main{
         }
 
 */
-       /*String cst="Renault";
+       String cst="Renault";
 
         int vid=9;
         int nbP=5;
         Vehicle v = new Vehicle( vid, cst, nbP);
         System.out.println(v);
-
+/*
         try {
             System.out.println(VehicleService.getInstance().findAll());
         } catch (DaoException e) {
@@ -142,7 +142,7 @@ public class main{
         }*/
 
 
-     /* Reservation R = new Reservation(v,  c,  f, d,  id);
+     Reservation R = new Reservation(v,  c,  f, d,  id);
         System.out.println(R);
         try {
             System.out.println(ReservationService.getInstance().findAll());
@@ -151,13 +151,13 @@ public class main{
             e.printStackTrace();
         }
         try {
-            System.out.println(ReservationService.getInstance().create(R));
+            System.out.println(ReservationService.getInstance().vehicleIdClient(9));
         } catch (DaoException e) {
 
             e.printStackTrace();
-        }*/
+        }
 
-        try {
+        /*try {
             System.out.println(ReservationService.getInstance().findAll());
         } catch (DaoException e) {
 

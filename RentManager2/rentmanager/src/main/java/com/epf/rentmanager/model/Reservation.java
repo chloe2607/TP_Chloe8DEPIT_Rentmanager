@@ -20,7 +20,7 @@ public Reservation(Vehicle v, Client c, LocalDate f, LocalDate d, long id){
     client =c;
     fin=f;
     debut=d;
-    id=id;
+    this.id=id;
 }
 
     public Reservation(Vehicle v, Client c, LocalDate f, LocalDate d){

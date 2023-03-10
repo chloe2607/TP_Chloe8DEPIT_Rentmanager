@@ -165,7 +165,9 @@ public class ReservationDao {
 				c=ClientService.getInstance().findById(client_id);
 
 
-				reservationList.add(new Reservation(v, c, f,  d, id));
+
+				Reservation r=new Reservation(v, c, f,  d, id);
+				reservationList.add(r);
 				//connection.close();
 			}
 

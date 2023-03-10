@@ -29,7 +29,6 @@
                                 <tr>
                                     <th style="width: 10px">#</th>
                                     <th>Marque</th>
-                                    <th>Modele</th>
                                     <th>Nombre de places</th>
                                     <!--<th>Propriétaire</th>-->
                                     <th>Action</th>
@@ -48,7 +47,7 @@
                                         <a class="btn btn-success disabled" href="#">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                        <a class="btn btn-danger disabled" href="#">
+                                        <a class="btn btn-danger" href="${pageContext.request.contextPath}/vehicles/delete?id=${vehicle.id}">
                                             <i class="fa fa-trash"></i>
                                         </a>
                                     </td>

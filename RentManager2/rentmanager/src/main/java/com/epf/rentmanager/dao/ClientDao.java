@@ -76,6 +76,7 @@ public class ClientDao {
 	}
 
 	public Client findById(long id) throws DaoException {
+		System.out.println(id);
 		Client clt= new Client();
 		try {
 			Connection connection= ConnectionManager.getConnection();
@@ -92,6 +93,7 @@ public class ClientDao {
 				Client c =new Client(nom,  prenom,  id,d, am);
 
 				clt=c;
+				//System.out.println(clt.getNom());
 			}
 				connection.close();
 

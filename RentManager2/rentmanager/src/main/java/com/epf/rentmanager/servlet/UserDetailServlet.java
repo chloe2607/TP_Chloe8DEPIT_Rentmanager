@@ -25,20 +25,22 @@ public class UserDetailServlet extends HttpServlet{
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/details.jsp").forward(request, response);
-    }
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
 
             request.setAttribute("client", clientservice.findById(Long.parseLong(request.getParameter("id"),10)));
            request.setAttribute("nbReservation", reservationService.compteReservationIdClient(Long.parseLong(request.getParameter("id"),10)));
             request.setAttribute("reservations", reservationService.findAllIdC(Long.parseLong(request.getParameter("id"),10)));
+            request.setAttribute("nbVehicles", reservationService.compteVehicleIdClient(Long.parseLong(request.getParameter("id"),10)));
+            request.setAttribute("Vehicles", reservationService.vehicleIdClient(Long.parseLong(request.getParameter("id"),10)));
+
+
+
 
         } catch (DaoException e) {
             throw new RuntimeException(e);
         }
-        this.doGet(request,response);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/details.jsp").forward(request, response);
        }
 }
 //pas lié à details

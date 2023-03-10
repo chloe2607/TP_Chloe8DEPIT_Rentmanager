@@ -33,7 +33,7 @@ public class main{
         }*/
         System.out.println(c);
         try {
-          System.out.println(ClientService.getInstance().findById(1));
+          System.out.println(ClientService.getInstance().findById(3));
         } catch (DaoException e) {
 
            e.printStackTrace();
@@ -95,7 +95,7 @@ public class main{
         }
 
 */
-       String cst="Renault";
+       /*String cst="Renault";
 
         int vid=9;
         int nbP=5;
@@ -108,6 +108,8 @@ public class main{
 
             e.printStackTrace();
         }
+
+
 
 
 /*
@@ -153,7 +155,7 @@ public class main{
         } catch (DaoException e) {
 
             e.printStackTrace();
-        }
+        }*/
 
         try {
             System.out.println(ReservationService.getInstance().findAll());
@@ -163,12 +165,13 @@ public class main{
         }
 
        try {
-            System.out.println(ReservationService.getInstance().compteReservationIdClient(9));
+           System.out.println("le nbr de voiture pour le client est :");
+            System.out.println("le nb est "+ReservationService.getInstance().compteVehicleIdClient(2));
         } catch (DaoException e) {
 
             e.printStackTrace();
-        }*/
-
+        }
+System.out.println("c'est la fin");
         /*try {
             System.out.println(ReservationService.getInstance().findResaByVehicleId(9));
         } catch (DaoException e) {

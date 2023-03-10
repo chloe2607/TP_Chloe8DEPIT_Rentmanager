@@ -20,14 +20,14 @@
                     <!-- Profile Image -->
                     <div class="box box-primary">
                         <div class="box-body box-profile">
-                            <h3 class="profile-username text-center">${client.prenom}</h3>
+                            <h3 class="profile-username text-center">${client.prenom} </h3>
 
                             <ul class="list-group list-group-unbordered">
                                 <li class="list-group-item">
                                     <b>Reservation(s)</b> <a class="pull-right">${nbReservation}</a>
                                 </li>
                                  <li class="list-group-item">
-                                    <b>Voiture(s)</b> <a class="pull-right">3</a>
+                                    <b>Voiture(s)</b> <a class="pull-right">${nbVehicles}</a>
                                 </li>
                             </ul>
                         </div>
@@ -54,6 +54,7 @@
                                         </tr>
                                         <c:forEach items="${reservations}" var="resa">
                                             <tr>
+                                            <td>${resa.vehicle.id}</td>
                                               <td>${resa.vehicle.constructeur}</td>
                                               <td>${resa.debut}</td>
                                               <td>${resa.fin}</td>
@@ -69,28 +70,17 @@
                                     <table class="table table-striped">
                                         <tr>
                                             <th style="width: 10px">#</th>
-                                            <th>Modele</th>
                                             <th>Constructeur</th>
                                             <th style=>Nombre de places</th>
                                         </tr>
+                                        <c:forEach items="${Vehicles}" var="voiture">
                                         <tr>
-                                            <td>1.</td>
-                                            <td>Renault</td>
-                                            <td>Clio</td>
-                                            <td>5</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2.</td>
-                                            <td>Peugeot</td>
-                                            <td>206</td>
-                                            <td>5</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3.</td>
-                                            <td>Volkswagen</td>
-                                            <td>Touran</td>
-                                            <td>7</td>
-                                        </tr>
+                                        <td>${voiture.vehicle.id}</td>
+                                         <td>${voiture.vehicle.constructeur}</td>
+                                         <td>${voiture.vehicle.nb_places}</td>
+                                          </tr>
+                                         </c:forEach>
+
                                     </table>
                                 </div>
                             </div>

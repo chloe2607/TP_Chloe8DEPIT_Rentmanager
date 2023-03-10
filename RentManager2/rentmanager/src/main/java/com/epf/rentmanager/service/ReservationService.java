@@ -8,6 +8,7 @@ import com.epf.rentmanager.dao.VehicleDao;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Reservation;
+import com.epf.rentmanager.model.Vehicle;
 
 import java.util.List;
 
@@ -107,5 +108,27 @@ public class ReservationService {
 
         }
 
+    }
+
+    public int compteVehicleIdClient(long id ) throws DaoException {
+        // TODO: récupérer tous les clients
+        try {
+            return ReservationDao.getInstance().compteVehicleIdClient(id);
+        } catch (DaoException e) {
+            e.printStackTrace();
+            throw new DaoException();
+
+        }
+    }
+
+    public List<Vehicle> vehicleIdClient(long id ) throws DaoException {
+        // TODO: récupérer tous les clients
+        try {
+            return ReservationDao.getInstance().vehicleIdClient(id);
+        } catch (DaoException e) {
+            e.printStackTrace();
+            throw new DaoException();
+
+        }
     }
 }

@@ -53,6 +53,18 @@ public class VehicleService {
 
 	}
 
+	public void delete(long id) throws DaoException {
+		// TODO: créer un véhicule
+		try {
+			VehicleDao.getInstance().delete(id);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new DaoException();
+
+		}
+
+	}
+
 	public Vehicle findById(long id) throws DaoException {
 		// TODO: récupérer un véhicule par son id
 		try {
@@ -86,5 +98,7 @@ public class VehicleService {
 
 		}
 	}
+
+
 }
 

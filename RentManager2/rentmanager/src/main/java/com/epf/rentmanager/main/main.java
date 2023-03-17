@@ -19,32 +19,41 @@ public class main{
     public static void main(String [] arg){
         String nom="dede";
         String prenom="cloclo";
+        String pr="Jacqueline";
         long id =9;
         LocalDate d = LocalDate.of(1980, 4, 9);
         LocalDate f = LocalDate.of(1990, 4, 9);
         String am="dede.cloclo@epf.fr";
         Client c =new Client(nom,  prenom,  id,d, am);
-      /*System.out.println(c);
-        try {
+        Client cl=new Client(nom,pr,1,d,am);
+      System.out.println(c);
+        /*try {
           System.out.println(ClientService.getInstance().findAll());
         } catch (DaoException e) {
 
            e.printStackTrace();
-        }*/
+        }
         System.out.println(c);
         try {
-          System.out.println(ClientService.getInstance().findById(3));
+          ClientService.getInstance().changeById(1,cl);
         } catch (DaoException e) {
 
            e.printStackTrace();
         }
 
         try {
-            System.out.println(ClientService.getInstance().compteClient());
+            System.out.println(ClientService.getInstance().findAll());
         } catch (DaoException e) {
 
             e.printStackTrace();
         }
+
+      /*  try {
+            System.out.println(ClientService.getInstance().compteClient());
+        } catch (DaoException e) {
+
+            e.printStackTrace();
+        }*/
         /*try {
             System.out.println(ClientService.getInstance().delete(7));
         } catch (DaoException e) {
@@ -142,7 +151,7 @@ public class main{
         }*/
 
 
-     Reservation R = new Reservation(v,  c,  f, d,  id);
+    /* Reservation R = new Reservation(v,  c,  f, d,  id);
         System.out.println(R);
         try {
             System.out.println(ReservationService.getInstance().findAll());
@@ -151,11 +160,17 @@ public class main{
             e.printStackTrace();
         }
         try {
-            System.out.println(ReservationService.getInstance().vehicleIdClient(9));
+            ReservationService.getInstance().delete(8);
         } catch (DaoException e) {
 
             e.printStackTrace();
         }
+        try {
+            System.out.println("final"+ReservationService.getInstance().findAll());
+        } catch (DaoException e) {
+
+            e.printStackTrace();
+        }*/
 
         /*try {
             System.out.println(ReservationService.getInstance().findAll());

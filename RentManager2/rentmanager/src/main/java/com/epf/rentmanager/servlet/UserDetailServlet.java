@@ -4,6 +4,8 @@ import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.service.ClientService;
 import com.epf.rentmanager.service.ReservationService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,11 +18,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-@WebServlet("/users/details")
+
+@WebServlet(name = "UserDetailServlet", urlPatterns = "/users/details")
 public class UserDetailServlet extends HttpServlet{
-    private static final long serialVersionUID = 1L;
-    private ClientService clientservice=ClientService.getInstance();
-    private ReservationService reservationService=ReservationService.getInstance();
+    //private static final long serialVersionUID = 1L;
+    @Autowired
+    private ClientService clientservice;
+    @Autowired
+    private ReservationService reservationService;
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
+        System.out.println("User detail servlet OK");
+    }
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

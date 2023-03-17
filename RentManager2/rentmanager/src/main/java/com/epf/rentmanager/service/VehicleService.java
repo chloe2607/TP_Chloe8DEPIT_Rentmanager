@@ -10,13 +10,15 @@ import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.dao.ClientDao;
 import com.epf.rentmanager.dao.VehicleDao;
+import org.springframework.stereotype.Service;
 
+@Service
 public class VehicleService {
 
 	private VehicleDao vehicleDao;
-	public static VehicleService instance;
+	//public static VehicleService instance;
 
-	private VehicleService() {
+	/*private VehicleService() {
 		this.vehicleDao = VehicleDao.getInstance();
 	}
 
@@ -26,13 +28,17 @@ public class VehicleService {
 		}
 
 		return instance;
+	}*/
+
+	private VehicleService(VehicleDao vehicleDao){
+		this.vehicleDao = vehicleDao;
 	}
 
 
 	public long create(Vehicle vehicle) throws DaoException {
 		// TODO: créer un véhicule
 		try {
-			return VehicleDao.getInstance().create(vehicle);
+			return this.vehicleDao.create(vehicle);
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new DaoException();
@@ -44,7 +50,7 @@ public class VehicleService {
 	public long delete(Vehicle vehicle) throws DaoException {
 		// TODO: créer un véhicule
 		try {
-			return VehicleDao.getInstance().delete(vehicle);
+			return this.vehicleDao.delete(vehicle);
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new DaoException();
@@ -56,7 +62,7 @@ public class VehicleService {
 	public void delete(long id) throws DaoException {
 		// TODO: créer un véhicule
 		try {
-			VehicleDao.getInstance().delete(id);
+			this.vehicleDao.delete(id);
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new DaoException();
@@ -68,7 +74,7 @@ public class VehicleService {
 	public Vehicle findById(long id) throws DaoException {
 		// TODO: récupérer un véhicule par son id
 		try {
-			return VehicleDao.getInstance().findById(id);
+			return this.vehicleDao.findById(id);
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new DaoException();
@@ -80,7 +86,7 @@ public class VehicleService {
 	public List<Vehicle> findAll() throws DaoException {
 		// TODO: récupérer tous les clients
 		try {
-			return VehicleDao.getInstance().findAll();
+			return this.vehicleDao.findAll();
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new DaoException();
@@ -91,7 +97,7 @@ public class VehicleService {
 	public int compteVehicle() throws DaoException {
 		// TODO: récupérer tous les clients
 		try {
-			return VehicleDao.getInstance().compteVehicle();
+			return this.vehicleDao.compteVehicle();
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new DaoException();

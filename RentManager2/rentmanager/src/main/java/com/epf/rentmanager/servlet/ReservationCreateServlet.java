@@ -15,16 +15,29 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-@WebServlet("/rents/create")
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
+@WebServlet(name = "ReservationCreateServlet", urlPatterns = "/rents/create")
+
 public class ReservationCreateServlet extends HttpServlet{
-    private static final long serialVersionUID = 1L;
-    private ReservationService reservationService= ReservationService.getInstance();
-    private ClientService clientService=ClientService.getInstance();
-    private VehicleService vehicleService=VehicleService.getInstance();
+    //private static final long serialVersionUID = 1L;
+    @Autowired
+    private ReservationService reservationService;
+    @Autowired
+    private ClientService clientService;
+    @Autowired
+    private VehicleService vehicleService;
     private Reservation r;
     private Client c;
     private Vehicle v;
 
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
+        System.out.println("Resea create servlet OK");
+    }
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             request.setAttribute("client", clientService.findAll());

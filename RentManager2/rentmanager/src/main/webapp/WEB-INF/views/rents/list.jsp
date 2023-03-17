@@ -47,13 +47,13 @@
                                  <td>${resa.fin}</td>
 
                                  <td>
-                                 <a class="btn btn-primary" href="${pageContext.request.contextPath}/users/details?id=${cclient.identifiant}">
+                                 <a class="btn btn-primary" href="${pageContext.request.contextPath}/rents/details?id=${resa.id}">
                                  <i class="fa fa-play"></i>
                                  </a>
                                   <a class="btn btn-success disabled" href="#">
                                    <i class="fa fa-edit"></i>
                                     </a>
-                                     <a class="btn btn-danger" href="${pageContext.request.contextPath}/users/delete?id=${cclient.identifiant}">
+                                     <a class="btn btn-danger" href="${pageContext.request.contextPath}/rents/delete?id=${resa.id}">
                                      <i class="fa fa-trash"></i>
                                      </a>
                                      </td>

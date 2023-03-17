@@ -1,7 +1,9 @@
 C:\Users\chloe\Downloads\RentManager2\RentManager2\rentmanager\src\main\java\com\epf\rentmanager\persistence\ConnectionManager.java
+C:\Users\chloe\Downloads\RentManager2\RentManager2\rentmanager\src\main\java\com\epf\rentmanager\configuration\AppConfiguration.java
 C:\Users\chloe\Downloads\RentManager2\RentManager2\rentmanager\src\main\java\com\epf\rentmanager\persistence\FillDatabase.java
 C:\Users\chloe\Downloads\RentManager2\RentManager2\rentmanager\src\main\java\com\epf\rentmanager\servlet\VehiclesCreateServlet.java
 C:\Users\chloe\Downloads\RentManager2\RentManager2\rentmanager\src\main\java\com\epf\rentmanager\exception\ServiceException.java
+C:\Users\chloe\Downloads\RentManager2\RentManager2\rentmanager\src\main\java\com\epf\rentmanager\servlet\ReservationDeleteServlet.java
 C:\Users\chloe\Downloads\RentManager2\RentManager2\rentmanager\src\main\java\com\epf\rentmanager\dao\ClientDao.java
 C:\Users\chloe\Downloads\RentManager2\RentManager2\rentmanager\src\main\java\com\epf\rentmanager\model\Reservation.java
 C:\Users\chloe\Downloads\RentManager2\RentManager2\rentmanager\src\main\java\com\epf\rentmanager\servlet\VehiclesDeleteServlet.java
@@ -18,6 +20,8 @@ C:\Users\chloe\Downloads\RentManager2\RentManager2\rentmanager\src\main\java\com
 C:\Users\chloe\Downloads\RentManager2\RentManager2\rentmanager\src\main\java\com\epf\rentmanager\main\main.java
 C:\Users\chloe\Downloads\RentManager2\RentManager2\rentmanager\src\main\java\com\epf\rentmanager\service\ReservationService.java
 C:\Users\chloe\Downloads\RentManager2\RentManager2\rentmanager\src\main\java\com\epf\rentmanager\dao\VehicleDao.java
+C:\Users\chloe\Downloads\RentManager2\RentManager2\rentmanager\src\main\java\com\epf\rentmanager\configuration\WebConfiguration.java
+C:\Users\chloe\Downloads\RentManager2\RentManager2\rentmanager\src\main\java\com\epf\rentmanager\servlet\UserEditServlet.java
 C:\Users\chloe\Downloads\RentManager2\RentManager2\rentmanager\src\main\java\com\epf\rentmanager\servlet\ReservationListServlet.java
 C:\Users\chloe\Downloads\RentManager2\RentManager2\rentmanager\src\main\java\com\epf\rentmanager\service\ClientService.java
 C:\Users\chloe\Downloads\RentManager2\RentManager2\rentmanager\src\main\java\com\epf\rentmanager\servlet\UserListServlet.java

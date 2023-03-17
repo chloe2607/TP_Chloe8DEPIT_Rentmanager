@@ -9,23 +9,28 @@ import java.util.List;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.persistence.ConnectionManager;
+import org.springframework.stereotype.Repository;
 
-
+@Repository
 public class ClientDao {
 	
-	private static ClientDao instance = null;
-	private ClientDao() {}
-	public static ClientDao getInstance() {
+	//private static ClientDao instance = null;
+	private ClientDao() {
+
+	}
+	/*public static ClientDao getInstance() {
 		if(instance == null) {
 			instance = new ClientDao();
 		}
 		return instance;
-	}
+	}*/
 	
 	private static final String CREATE_CLIENT_QUERY = "INSERT INTO Client(nom, prenom, email, naissance) VALUES(?, ?, ?, ?);";
 	private static final String DELETE_CLIENT_QUERY = "DELETE FROM Client WHERE id=?;";
 	private static final String FIND_CLIENT_QUERY = "SELECT nom, prenom, email, naissance FROM Client WHERE id=?;";
 	private static final String FIND_CLIENTS_QUERY = "SELECT id, nom, prenom, email, naissance FROM Client;";
+
+	private static final String CHANGE_CLIENTS_QUERY = "SET nom, prenom, email, naissance FROM Client WHERE id=?;";
 
 
 	public long create(Client client) throws DaoException {
@@ -76,7 +81,7 @@ public class ClientDao {
 	}
 
 	public Client findById(long id) throws DaoException {
-		System.out.println(id);
+		//System.out.println(id);
 		Client clt= new Client();
 		try {
 			Connection connection= ConnectionManager.getConnection();
@@ -134,6 +139,29 @@ public class ClientDao {
 		clients =this.findAll();
 		nbrClient=clients.size();
 		return nbrClient;
+	}
+
+	public void changeById(long id, Client c)throws DaoException{
+		try {
+		Connection connection= ConnectionManager.getConnection();
+		PreparedStatement ps = connection.prepareStatement(CHANGE_CLIENTS_QUERY);
+		ps.setLong(1,id);
+		ResultSet rs=ps.executeQuery();
+		ps.setString(1,c.getNom());
+		ps.setString(2,c.getPrenom());
+		ps.setString(3,c.getAdresseMail());
+		ps.setDate(4, Date.valueOf(c.getDateN()));
+
+		ps.execute();
+
+		ps.close();
+		connection.close();
+
+	} catch (SQLException e) {
+		e.printStackTrace();
+		throw new DaoException();
+	}
+
 	}
 
 

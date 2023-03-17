@@ -9,29 +9,35 @@ import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.model.Vehicle;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+@Service
 
 public class ReservationService {
     private ReservationDao reservationDao;
-    public static ReservationService instance;
+    //public static ReservationService instance;
 
-    private ReservationService() {
+    /*private ReservationService() {
         this.reservationDao = ReservationDao.getInstance();
+    }*/
+
+    private ReservationService(ReservationDao reservationDao){
+        this.reservationDao = reservationDao;
     }
 
-    public static ReservationService getInstance() {
+    /*public static ReservationService getInstance() {
         if (instance == null) {
             instance = new ReservationService();
         }
 
         return instance;
-    }
+    }*/
 
 
     public long create(Reservation reservation) throws DaoException{
         try {
-            return reservationDao.getInstance().create(reservation);
+            return this.reservationDao.create(reservation);
         } catch (DaoException e) {
             e.printStackTrace();
             throw new DaoException();
@@ -42,7 +48,7 @@ public class ReservationService {
     public void delete(long id) throws DaoException {
         // TODO: créer un véhicule
         try {
-            ReservationDao.getInstance().deleteByClientId(id);
+            this.reservationDao.delete(id);
         } catch (DaoException e) {
             e.printStackTrace();
             throw new DaoException();
@@ -52,7 +58,7 @@ public class ReservationService {
     }
     public Reservation findResaByVehicleId(long id) throws DaoException{
         try {
-            return ReservationDao.getInstance().findResaByVehicleId(id);
+            return this.reservationDao.findResaByVehicleId(id);
         } catch (DaoException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
@@ -60,7 +66,7 @@ public class ReservationService {
     }
     public Reservation findResaByClientId(long id) throws DaoException{
         try {
-            return ReservationDao.getInstance().findResaByClientId( id);
+            return this.reservationDao.findResaByClientId( id);
         } catch (DaoException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
@@ -70,7 +76,7 @@ public class ReservationService {
     public List<Reservation> findAll() throws DaoException {
         // TODO: récupérer toutes les reservations
         try {
-            return ReservationDao.getInstance().findAll();
+            return this.reservationDao.findAll();
         } catch (DaoException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
@@ -80,7 +86,7 @@ public class ReservationService {
     public int compteReservation () throws DaoException {
         // TODO: récupérer tous les clients
         try {
-            return ReservationDao.getInstance().compteReservation();
+            return this.reservationDao.compteReservation();
         } catch (DaoException e) {
             e.printStackTrace();
             throw new DaoException();
@@ -90,7 +96,7 @@ public class ReservationService {
 
     public int compteReservationIdClient(long id) throws DaoException {
         try {
-            return ReservationDao.getInstance().compteReservationIdClient(id);
+            return this.reservationDao.compteReservationIdClient(id);
         } catch (DaoException e) {
             e.printStackTrace();
             throw new DaoException();
@@ -101,7 +107,7 @@ public class ReservationService {
 
     public List<Reservation>findAllIdC(long idC)  throws DaoException {
         try {
-            return ReservationDao.getInstance().findAllIdC(idC) ;
+            return this.reservationDao.findAllIdC(idC) ;
         } catch (DaoException e) {
             e.printStackTrace();
             throw new DaoException();
@@ -113,7 +119,7 @@ public class ReservationService {
     public int compteVehicleIdClient(long id ) throws DaoException {
         // TODO: récupérer tous les clients
         try {
-            return ReservationDao.getInstance().compteVehicleIdClient(id);
+            return this.reservationDao.compteVehicleIdClient(id);
         } catch (DaoException e) {
             e.printStackTrace();
             throw new DaoException();
@@ -124,7 +130,7 @@ public class ReservationService {
     public List<Vehicle> vehicleIdClient(long id ) throws DaoException {
         // TODO: récupérer tous les clients
         try {
-            return ReservationDao.getInstance().vehicleIdClient(id);
+            return this.reservationDao.vehicleIdClient(id);
         } catch (DaoException e) {
             e.printStackTrace();
             throw new DaoException();

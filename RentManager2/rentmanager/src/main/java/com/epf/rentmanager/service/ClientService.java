@@ -9,28 +9,32 @@ import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Vehicle;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ClientService {
 
 	private ClientDao clientDao;
-	public static ClientService instance;
-	
-	private ClientService() {
+	//public static ClientService instance;
+
+	/*private ClientService() {
 		this.clientDao = ClientDao.getInstance();
+	}*/
+	private ClientService(ClientDao clientDao){
+		this.clientDao = clientDao;
 	}
-	
-	public static ClientService getInstance() {
+	/*public static ClientService getInstance() {
 		if (instance == null) {
 			instance = new ClientService();
 		}
 		
 		return instance;
-	}
+	}*/
 	
 	
 	public long create(Client client) throws DaoException{
 		try {
-			return ClientDao.getInstance().create(client);
+			return this.clientDao.create(client);
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new DaoException();
@@ -41,7 +45,7 @@ public class ClientService {
 	public void delete(long id) throws DaoException {
 		// TODO: créer un véhicule
 		try {
-			ClientDao.getInstance().delete(id);
+			this.clientDao.delete(id);
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new DaoException();
@@ -53,7 +57,7 @@ public class ClientService {
 	public Client findById(long id) throws DaoException{
 		// TODO: récupérer un client par son id
 		try {
-			return ClientDao.getInstance().findById(id);
+			return this.clientDao.findById(id);
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new DaoException();
@@ -64,7 +68,7 @@ public class ClientService {
 	public List<Client> findAll() throws DaoException {
 		// TODO: récupérer tous les clients
 		try {
-			return ClientDao.getInstance().findAll();
+			return this.clientDao.findAll();
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new DaoException();
@@ -75,13 +79,24 @@ public class ClientService {
 		public int compteClient () throws DaoException {
 			// TODO: récupérer tous les clients
 			try {
-				return ClientDao.getInstance().compteClient();
+				return this.clientDao.compteClient();
 			} catch (DaoException e) {
 				e.printStackTrace();
 				throw new DaoException();
 
 			}
 		}
+
+	public void  changeById(long id, Client c) throws DaoException {
+		// TODO: récupérer tous les clients
+		try {
+			this.clientDao.changeById(id, c);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new DaoException();
+
+		}
+	}
 
 
 

@@ -6,6 +6,7 @@ import com.epf.rentmanager.dao.ClientDao;
 import com.epf.rentmanager.dao.ReservationDao;
 import com.epf.rentmanager.dao.VehicleDao;
 import com.epf.rentmanager.exception.DaoException;
+import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.model.Vehicle;
@@ -73,23 +74,23 @@ public class ReservationService {
         }
     }
 
-    public List<Reservation> findAll() throws DaoException {
+    public List<Reservation> findAll() throws ServiceException {
         // TODO: récupérer toutes les reservations
         try {
             return this.reservationDao.findAll();
         } catch (DaoException e) {
             e.printStackTrace();
-            throw new RuntimeException(e);
+            throw new ServiceException();
         }
     }
 
-    public int compteReservation () throws DaoException {
+    public int compteReservation () throws ServiceException {
         // TODO: récupérer tous les clients
         try {
             return this.reservationDao.compteReservation();
         } catch (DaoException e) {
             e.printStackTrace();
-            throw new DaoException();
+            throw new ServiceException();
 
         }
     }
@@ -108,6 +109,17 @@ public class ReservationService {
     public List<Reservation>findAllIdC(long idC)  throws DaoException {
         try {
             return this.reservationDao.findAllIdC(idC) ;
+        } catch (DaoException e) {
+            e.printStackTrace();
+            throw new DaoException();
+
+        }
+
+    }
+
+    public Reservation findResaById(long idC)  throws DaoException {
+        try {
+            return this.reservationDao.findResaById(idC) ;
         } catch (DaoException e) {
             e.printStackTrace();
             throw new DaoException();

@@ -76,13 +76,13 @@ public class ClientService {
 		}
 	}
 
-		public int compteClient () throws DaoException {
+		public int compteClient () throws ServiceException{
 			// TODO: récupérer tous les clients
 			try {
 				return this.clientDao.compteClient();
 			} catch (DaoException e) {
 				e.printStackTrace();
-				throw new DaoException();
+				throw new ServiceException();
 
 			}
 		}

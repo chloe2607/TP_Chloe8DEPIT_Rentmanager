@@ -30,8 +30,7 @@ public class ClientDao {
 	private static final String FIND_CLIENT_QUERY = "SELECT nom, prenom, email, naissance FROM Client WHERE id=?;";
 	private static final String FIND_CLIENTS_QUERY = "SELECT id, nom, prenom, email, naissance FROM Client;";
 
-	private static final String CHANGE_CLIENTS_QUERY = "SET nom, prenom, email, naissance FROM Client WHERE id=?;";
-
+	private static final String UPDATE_CLIENT_QUERY = "UPDATE Client SET nom = ?, prenom = ?, email = ?, naissance = ? WHERE id = ?;";
 
 	public long create(Client client) throws DaoException {
 		long id=0;
@@ -144,7 +143,7 @@ public class ClientDao {
 	public void changeById(long id, Client c)throws DaoException{
 		try {
 		Connection connection= ConnectionManager.getConnection();
-		PreparedStatement ps = connection.prepareStatement(CHANGE_CLIENTS_QUERY);
+		PreparedStatement ps = connection.prepareStatement(UPDATE_CLIENT_QUERY );
 		ps.setLong(1,id);
 		ResultSet rs=ps.executeQuery();
 		ps.setString(1,c.getNom());

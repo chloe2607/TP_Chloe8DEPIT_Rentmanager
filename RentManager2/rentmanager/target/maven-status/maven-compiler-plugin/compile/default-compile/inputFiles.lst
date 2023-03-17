@@ -1,6 +1,7 @@
 C:\Users\chloe\Downloads\RentManager2\RentManager2\rentmanager\src\main\java\com\epf\rentmanager\persistence\ConnectionManager.java
 C:\Users\chloe\Downloads\RentManager2\RentManager2\rentmanager\src\main\java\com\epf\rentmanager\configuration\AppConfiguration.java
 C:\Users\chloe\Downloads\RentManager2\RentManager2\rentmanager\src\main\java\com\epf\rentmanager\persistence\FillDatabase.java
+C:\Users\chloe\Downloads\RentManager2\RentManager2\rentmanager\src\main\java\com\epf\rentmanager\servlet\ReservationDetailsServlet.java
 C:\Users\chloe\Downloads\RentManager2\RentManager2\rentmanager\src\main\java\com\epf\rentmanager\servlet\VehiclesCreateServlet.java
 C:\Users\chloe\Downloads\RentManager2\RentManager2\rentmanager\src\main\java\com\epf\rentmanager\exception\ServiceException.java
 C:\Users\chloe\Downloads\RentManager2\RentManager2\rentmanager\src\main\java\com\epf\rentmanager\servlet\ReservationDeleteServlet.java

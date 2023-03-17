@@ -83,24 +83,24 @@ public class VehicleService {
 
 	}
 
-	public List<Vehicle> findAll() throws DaoException {
+	public List<Vehicle> findAll() throws ServiceException {
 		// TODO: récupérer tous les clients
 		try {
 			return this.vehicleDao.findAll();
 		} catch (DaoException e) {
 			e.printStackTrace();
-			throw new DaoException();
+			throw new ServiceException();
 
 		}
 	}
 
-	public int compteVehicle() throws DaoException {
+	public int compteVehicle() throws ServiceException {
 		// TODO: récupérer tous les clients
 		try {
 			return this.vehicleDao.compteVehicle();
 		} catch (DaoException e) {
 			e.printStackTrace();
-			throw new DaoException();
+			throw new ServiceException();
 
 		}
 	}

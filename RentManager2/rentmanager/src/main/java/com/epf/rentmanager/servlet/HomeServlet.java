@@ -1,6 +1,7 @@
 package com.epf.rentmanager.servlet;
 
 import com.epf.rentmanager.exception.DaoException;
+import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.service.ClientService;
 import com.epf.rentmanager.service.ReservationService;
 import com.epf.rentmanager.service.VehicleService;
@@ -43,7 +44,7 @@ public class HomeServlet extends HttpServlet {
 			int nbrReservations =reservationService.compteReservation();
 			request.setAttribute("nbrReservations", nbrReservations);
 		}
-		catch (DaoException e) {
+		catch (ServiceException  e) {
 		throw new RuntimeException(e);
 
 		}

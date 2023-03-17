@@ -27,8 +27,8 @@ public class main{
         Client c =new Client(nom,  prenom,  id,d, am);
         Client cl=new Client(nom,pr,1,d,am);
       System.out.println(c);
-        /*try {
-          System.out.println(ClientService.getInstance().findAll());
+      /*  try {
+          System.out.println(ClientService.findAll());
         } catch (DaoException e) {
 
            e.printStackTrace();
@@ -48,7 +48,7 @@ public class main{
             e.printStackTrace();
         }
 
-      /*  try {
+      /* try {
             System.out.println(ClientService.getInstance().compteClient());
         } catch (DaoException e) {
 

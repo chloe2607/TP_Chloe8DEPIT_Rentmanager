@@ -28,6 +28,12 @@ public class UserEditServlet extends HttpServlet {
     @Autowired
     private ReservationService reservationService;
 
+    @Autowired
+    private Client client;
+
+    @Autowired
+    private long id;
+
     @Override
     public void init() throws ServletException {
         super.init();
@@ -38,6 +44,7 @@ public class UserEditServlet extends HttpServlet {
         try {
             request.setAttribute("client", clientservice.findById(Long.parseLong(request.getParameter("id"), 10)));
 
+            //request.setAttribute("identifiant");
         } catch (DaoException e) {
             throw new RuntimeException(e);
         }
@@ -51,6 +58,7 @@ public class UserEditServlet extends HttpServlet {
         String prenom = request.getParameter("first_name");
         LocalDate dateN = LocalDate.parse(request.getParameter("date_nais"));
         String email = request.getParameter("email");
+        client = new Client(nom,prenom,dateN,email);
         //int id =request.getParameter("id");
         // c = new Client(id,nom,prenom, dateN,email);
 

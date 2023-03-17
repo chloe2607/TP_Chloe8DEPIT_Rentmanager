@@ -20,7 +20,7 @@ public class ClientService {
 	/*private ClientService() {
 		this.clientDao = ClientDao.getInstance();
 	}*/
-	private ClientService(ClientDao clientDao){
+	public ClientService(ClientDao clientDao){
 		this.clientDao = clientDao;
 	}
 	/*public static ClientService getInstance() {
@@ -65,13 +65,13 @@ public class ClientService {
 		}
 	}
 
-	public List<Client> findAll() throws DaoException {
+	public List<Client> findAll() throws ServiceException {
 		// TODO: récupérer tous les clients
 		try {
 			return this.clientDao.findAll();
 		} catch (DaoException e) {
 			e.printStackTrace();
-			throw new DaoException();
+			throw new ServiceException();
 
 		}
 	}

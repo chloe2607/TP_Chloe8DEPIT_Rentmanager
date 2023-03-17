@@ -1,5 +1,6 @@
 package com.epf.rentmanager.servlet;
 import com.epf.rentmanager.exception.DaoException;
+import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.model.Vehicle;
@@ -42,7 +43,7 @@ public class ReservationCreateServlet extends HttpServlet{
         try {
             request.setAttribute("client", clientService.findAll());
             request.setAttribute("vehicle", vehicleService.findAll());
-        } catch (DaoException e) {
+        } catch (DaoException | ServiceException e) {
             throw new RuntimeException(e);
         }
         this.getServletContext().getRequestDispatcher("/WEB-INF/views/rents/create.jsp").forward(request, response);

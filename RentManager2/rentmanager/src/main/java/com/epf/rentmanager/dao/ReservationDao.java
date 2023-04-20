@@ -96,6 +96,50 @@ public class ReservationDao {
 			//return client.getIdentifiant();
 		}
 
+	public void deleteByClientId(long id) throws DaoException {
+		//pb id Reservation toujours égal à 0
+
+		Reservation reservation =new Reservation();
+		reservation=this.findResaByClientId(id);
+
+		try {
+			Connection connection= ConnectionManager.getConnection();
+			PreparedStatement ps = connection.prepareStatement(DELETE_RESERVATION_QUERY);
+			ps.setLong(1,reservation.getId());
+			ps.execute();
+			int row =ps.executeUpdate();
+			ps.close();
+			connection.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException();
+		}
+		//return client.getIdentifiant();
+	}
+
+	public void deletefindResaByVehicleId(long id) throws DaoException {
+		//pb id Reservation toujours égal à 0
+
+		Reservation reservation =new Reservation();
+		reservation=this.findResaByVehicleId(id);
+
+		try {
+			Connection connection= ConnectionManager.getConnection();
+			PreparedStatement ps = connection.prepareStatement(DELETE_RESERVATION_QUERY);
+			ps.setLong(1,reservation.getId());
+			ps.execute();
+			int row =ps.executeUpdate();
+			ps.close();
+			connection.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException();
+		}
+		//return client.getIdentifiant();
+	}
+
 
 	
 	public Reservation findResaByClientId(long clientId) throws DaoException {

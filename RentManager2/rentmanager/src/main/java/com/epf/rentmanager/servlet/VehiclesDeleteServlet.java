@@ -2,6 +2,7 @@ package com.epf.rentmanager.servlet;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.service.ClientService;
+import com.epf.rentmanager.service.ReservationService;
 import com.epf.rentmanager.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
@@ -23,6 +24,8 @@ public class VehiclesDeleteServlet extends HttpServlet{
    //private static final long serialVersionUID = 1L;
    @Autowired
     private VehicleService vehicleservice;
+
+
 
     @Override
     public void init() throws ServletException {

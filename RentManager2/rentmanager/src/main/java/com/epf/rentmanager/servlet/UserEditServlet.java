@@ -41,31 +41,25 @@ public class UserEditServlet extends HttpServlet {
         System.out.println("User edit servlet OK");
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            request.setAttribute("client", clientservice.findById(Long.parseLong(request.getParameter("id"), 10)));
 
-            //request.setAttribute("identifiant");
+        this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/edit.jsp").forward(request, response);
+    }
+    //@Override
+    /*protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        try {
+            String nom = request.getParameter("last_name");
+            String prenom = request.getParameter("first_name");
+            LocalDate dateN = LocalDate.parse(request.getParameter("date_nais"));
+            String email = request.getParameter("email");
+            client = new Client(nom,prenom,dateN,email);
+            clientservice.changeById(Long.parseLong(request.getParameter("id")),client);
+
         } catch (DaoException e) {
             throw new RuntimeException(e);
         }
-        this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/edit.jsp").forward(request, response);
-    }
+        this.doGet(request,response);
+    }*/
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        // try {
-        String nom = request.getParameter("last_name");
-        String prenom = request.getParameter("first_name");
-        LocalDate dateN = LocalDate.parse(request.getParameter("date_nais"));
-        String email = request.getParameter("email");
-        client = new Client(nom,prenom,dateN,email);
-        //int id =request.getParameter("id");
-        // c = new Client(id,nom,prenom, dateN,email);
-
-        // request.setAttribute("client", clientservice.create(c));
-        // } catch (DaoException e) {
-        // throw new RuntimeException(e);
-        //}
-
-    }
 }

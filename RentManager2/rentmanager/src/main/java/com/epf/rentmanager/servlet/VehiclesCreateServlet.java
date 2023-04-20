@@ -41,6 +41,12 @@ public class VehiclesCreateServlet extends HttpServlet {
            int nb_places = Integer.parseInt(request.getParameter("seats"));
 
             v=new Vehicle(constructeur, nb_places);
+            while(!v.peutEtreReservée(nb_places)){
+                 constructeur=request.getParameter("constructeur");
+                nb_places = Integer.parseInt(request.getParameter("seats"));
+
+                v=new Vehicle(constructeur, nb_places);
+            }
 
             request.setAttribute("vehicle", vehicleservice.create(v));
         } catch (DaoException e) {

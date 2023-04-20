@@ -41,6 +41,13 @@ public class UserCreateServlet extends HttpServlet{
             LocalDate dateN = LocalDate.parse(request.getParameter("date_nais"));
             String email=request.getParameter("email");
            c=new Client(nom,prenom, dateN,email);
+           while(!c.aPlusde18ans(dateN, nom,prenom)&& clientservice.adresMailExisteDeja(email)){
+               nom=request.getParameter("last_name");
+               prenom=request.getParameter("first_name");
+                dateN = LocalDate.parse(request.getParameter("date_nais"));
+               email=request.getParameter("email");
+               c=new Client(nom,prenom, dateN,email);
+           }
 
             request.setAttribute("client", clientservice.create(c));
         } catch (DaoException e) {

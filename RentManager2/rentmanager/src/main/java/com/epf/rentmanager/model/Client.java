@@ -1,6 +1,7 @@
 package com.epf.rentmanager.model;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.Objects;
 
 public class Client {
@@ -92,4 +93,16 @@ public class Client {
                 ", dateN=" + dateN +
                 '}';
     }
+
+    public boolean aPlusde18ans(
+            LocalDate birthDate, String nom, String prenom) {
+        // validate inputs ...
+        int age = Period.between(birthDate, LocalDate.now()).getYears();
+        if(age>=18 && nom.length()>3 && prenom.length()>3){
+            return true;
+        }
+        return false;
+
+    }
+
 }

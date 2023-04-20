@@ -65,6 +65,28 @@ public class ClientService {
 		}
 	}
 
+	public List<String> findAllAdresMail() throws DaoException{
+		// TODO: récupérer un client par son id
+		try {
+			return this.clientDao.findAllAdresMail();
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new DaoException();
+
+		}
+	}
+
+	public boolean adresMailExisteDeja(String adresMail) throws DaoException{
+		// TODO: récupérer un client par son id
+		try {
+			return this.clientDao.adresMailExisteDeja(adresMail);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new DaoException();
+
+		}
+	}
+
 	public List<Client> findAll() throws ServiceException {
 		// TODO: récupérer tous les clients
 		try {

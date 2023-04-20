@@ -1,6 +1,7 @@
 package com.epf.rentmanager.model;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.Objects;
 
 public class Reservation {
@@ -92,5 +93,15 @@ public Reservation(Vehicle v, Client c, LocalDate f, LocalDate d, long id){
                 ", client=" + client +
                 ", vehicle=" + vehicle +
                 '}';
+    }
+
+    public boolean etreReserve() {
+        // validate inputs ...
+        int jour = Period.between(debut, fin).getDays();
+        if(jour<=7){
+            return true;
+        }
+        return false;
+
     }
 }

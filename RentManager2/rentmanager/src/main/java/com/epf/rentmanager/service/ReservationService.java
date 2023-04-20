@@ -57,6 +57,29 @@ public class ReservationService {
         }
 
     }
+    public void deleteByClientId(long id) throws DaoException {
+        // TODO: créer un véhicule
+        try {
+            this.reservationDao.deleteByClientId(id);
+        } catch (DaoException e) {
+            e.printStackTrace();
+            throw new DaoException();
+
+        }
+
+    }
+
+    public void deletefindResaByVehicleId(long id) throws DaoException {
+        // TODO: créer un véhicule
+        try {
+            this.reservationDao.deletefindResaByVehicleId(id);
+        } catch (DaoException e) {
+            e.printStackTrace();
+            throw new DaoException();
+
+        }
+
+    }
     public Reservation findResaByVehicleId(long id) throws DaoException{
         try {
             return this.reservationDao.findResaByVehicleId(id);

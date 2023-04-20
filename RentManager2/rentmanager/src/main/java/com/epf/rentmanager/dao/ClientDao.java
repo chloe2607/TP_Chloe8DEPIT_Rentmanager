@@ -132,6 +132,41 @@ public class ClientDao {
 		return clients;
 	}
 
+	public List<String> findAllAdresMail() throws DaoException {
+		List<String> adresMail = new ArrayList<String>();
+		try {
+			Connection connection= ConnectionManager.getConnection();
+			Statement statement = connection.createStatement();
+			ResultSet rs =statement.executeQuery(FIND_CLIENTS_QUERY);
+			while(rs.next()){
+				/*long id =rs.getInt("id");
+				String nom= rs.getString("nom");
+				String prenom = rs.getString("prenom");
+				LocalDate d= rs.getDate("naissance").toLocalDate();*/
+				String am =rs.getString("email");
+
+				adresMail.add(am);
+			}
+			connection.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException();
+		}
+		return adresMail;
+	}
+
+	public boolean adresMailExisteDeja(String adresMail)throws DaoException {
+		List<String> adresMai = new ArrayList<String>();
+		adresMai=this.findAllAdresMail();
+		for (int i=0; i<adresMai.size();i++){
+			if(adresMail.equals(adresMai.get(i))){
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public int compteClient() throws DaoException {
 		List<Client> clients = new ArrayList<Client>();
 		int nbrClient=0;

@@ -1,7 +1,9 @@
 package com.epf.rentmanager.servlet;
 import com.epf.rentmanager.exception.DaoException;
+import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.service.ClientService;
+import com.epf.rentmanager.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
@@ -24,6 +26,9 @@ public class UserDeleteServlet extends HttpServlet{
     @Autowired
     private ClientService clientservice;
 
+    @Autowired
+    private ReservationService resaService;
+
     @Override
     public void init() throws ServletException {
         super.init();
@@ -34,10 +39,12 @@ public class UserDeleteServlet extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
+            //request.setAttribute("reservation", resaService.findAll());
             int id= Integer.parseInt(request.getParameter("id"));
             clientservice.delete(id);
+           resaService.deleteByClientId(id);
            response.sendRedirect("/rentmanager/users");
-        } catch (DaoException e) {
+        } catch (DaoException  e) {
             throw new RuntimeException(e);
         }
 

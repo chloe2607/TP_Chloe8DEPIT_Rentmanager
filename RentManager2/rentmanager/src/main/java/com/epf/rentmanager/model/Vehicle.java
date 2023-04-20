@@ -1,5 +1,7 @@
 package com.epf.rentmanager.model;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Objects;
 
 public class Vehicle {
@@ -76,4 +78,16 @@ public class Vehicle {
                 ", nb_places=" + nb_places +
                 '}';
     }
+
+    public boolean peutEtreReservée(
+            int nbrPlaces) {
+
+        if(nbrPlaces>=2 && nbrPlaces<=9){
+            return true;
+        }
+        return false;
+
+    }
+
+
 }

@@ -59,6 +59,16 @@ public class ReservationCreateServlet extends HttpServlet{
             LocalDate fin= LocalDate.parse(request.getParameter("end"));
 
             r=new Reservation(v,c,fin,debut);
+            while (!r.etreReserve()){
+                idC= Integer.parseInt(request.getParameter("clientS"));
+                c= clientService.findById(idC);
+                idV= Integer.parseInt(request.getParameter("car"));
+                v=vehicleService.findById(idV);
+                 debut= LocalDate.parse(request.getParameter("begin"));
+                fin= LocalDate.parse(request.getParameter("end"));
+
+                r=new Reservation(v,c,fin,debut);
+            }
 
             request.setAttribute("reservation", reservationService.create(r));
         } catch (DaoException e) {

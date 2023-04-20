@@ -12,6 +12,7 @@ import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.model.Vehicle;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 @Service
 
@@ -166,6 +167,17 @@ public class ReservationService {
         // TODO: récupérer tous les clients
         try {
             return this.reservationDao.vehicleIdClient(id);
+        } catch (DaoException e) {
+            e.printStackTrace();
+            throw new DaoException();
+
+        }
+    }
+
+    public boolean peutEtreReserve(Vehicle V, LocalDate d)throws DaoException {
+        // TODO: récupérer tous les clients
+        try {
+            return this.reservationDao.peutEtreReserve( V,d);
         } catch (DaoException e) {
             e.printStackTrace();
             throw new DaoException();

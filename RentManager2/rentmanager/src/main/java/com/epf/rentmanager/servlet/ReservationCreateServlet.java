@@ -10,6 +10,7 @@ import com.epf.rentmanager.service.VehicleService;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.Period;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -57,9 +58,10 @@ public class ReservationCreateServlet extends HttpServlet{
             v=vehicleService.findById(idV);
             LocalDate debut= LocalDate.parse(request.getParameter("begin"));
             LocalDate fin= LocalDate.parse(request.getParameter("end"));
-
+            int jour = Period.between(debut, fin).getDays();
+            System.out.println(jour);
             r=new Reservation(v,c,fin,debut);
-            while (!r.etreReserve()){
+            while (!r.etreReserve()||reservationService.peutEtreReserve(v,debut) ){
                 idC= Integer.parseInt(request.getParameter("clientS"));
                 c= clientService.findById(idC);
                 idV= Integer.parseInt(request.getParameter("car"));

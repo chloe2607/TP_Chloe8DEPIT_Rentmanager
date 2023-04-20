@@ -378,4 +378,16 @@ public class ReservationDao {
 		}
 		return vehicles;
 	}
+
+	public boolean peutEtreReserve(Vehicle V,LocalDate d) throws DaoException {
+		List<Reservation> reservations = new ArrayList<Reservation>();
+		reservations=this.findAll();
+		for (int i=0; i<reservations.size();i++) {
+			if (reservations.get(i).getVehicle().equals(V) &&
+					reservations.get(i).getDebut().equals(d)) {
+				return false;
+			}
+		}
+		return true;
+	}
 }

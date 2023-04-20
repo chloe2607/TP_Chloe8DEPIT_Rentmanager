@@ -8,6 +8,8 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,7 +43,7 @@ public class UserCreateServlet extends HttpServlet{
             LocalDate dateN = LocalDate.parse(request.getParameter("date_nais"));
             String email=request.getParameter("email");
            c=new Client(nom,prenom, dateN,email);
-           while(!c.aPlusde18ans(dateN, nom,prenom)&& clientservice.adresMailExisteDeja(email)){
+            while(!c.aPlusde18ans(dateN, nom,prenom)|| clientservice.adresMailExisteDeja(email)){
                nom=request.getParameter("last_name");
                prenom=request.getParameter("first_name");
                 dateN = LocalDate.parse(request.getParameter("date_nais"));

@@ -139,12 +139,12 @@ public class ClientDao {
 			Statement statement = connection.createStatement();
 			ResultSet rs =statement.executeQuery(FIND_CLIENTS_QUERY);
 			while(rs.next()){
-				/*long id =rs.getInt("id");
+				long id =rs.getInt("id");
 				String nom= rs.getString("nom");
 				String prenom = rs.getString("prenom");
-				LocalDate d= rs.getDate("naissance").toLocalDate();*/
+				LocalDate d= rs.getDate("naissance").toLocalDate();
 				String am =rs.getString("email");
-
+//System.out.println("ladresm est "+ am);
 				adresMail.add(am);
 			}
 			connection.close();
@@ -160,6 +160,7 @@ public class ClientDao {
 		List<String> adresMai = new ArrayList<String>();
 		adresMai=this.findAllAdresMail();
 		for (int i=0; i<adresMai.size();i++){
+			//System.out.println("la taille du tableau est "+adresMai.size());
 			if(adresMail.equals(adresMai.get(i))){
 				return true;
 			}

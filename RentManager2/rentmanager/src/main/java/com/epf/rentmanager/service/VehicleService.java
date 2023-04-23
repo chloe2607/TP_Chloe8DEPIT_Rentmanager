@@ -105,6 +105,18 @@ public class VehicleService {
 		}
 	}
 
+	public void changeById(long id, Vehicle v) throws DaoException {
+		// TODO: créer un véhicule
+		try {
+			this.vehicleDao.changeById( id,v);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new DaoException();
+
+		}
+
+	}
+
 
 }
 

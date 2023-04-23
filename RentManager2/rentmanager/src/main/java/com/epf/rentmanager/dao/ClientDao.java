@@ -180,13 +180,13 @@ public class ClientDao {
 		try {
 		Connection connection= ConnectionManager.getConnection();
 		PreparedStatement ps = connection.prepareStatement(UPDATE_CLIENT_QUERY );
-		ps.setLong(1,id);
-		ResultSet rs=ps.executeQuery();
+		ps.setLong(5,id);
+
 		ps.setString(1,c.getNom());
 		ps.setString(2,c.getPrenom());
 		ps.setString(3,c.getAdresseMail());
 		ps.setDate(4, Date.valueOf(c.getDateN()));
-
+		//ResultSet rs=ps.executeQuery();
 		ps.execute();
 
 		ps.close();

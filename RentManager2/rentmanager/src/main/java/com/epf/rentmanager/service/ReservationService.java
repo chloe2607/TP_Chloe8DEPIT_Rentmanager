@@ -184,4 +184,16 @@ public class ReservationService {
 
         }
     }
+
+    public void changeById(long id, Reservation r) throws DaoException {
+        // TODO: créer un véhicule
+        try {
+            this.reservationDao.changeById(id, r);
+        } catch (DaoException e) {
+            e.printStackTrace();
+            throw new DaoException();
+
+        }
+
+    }
 }

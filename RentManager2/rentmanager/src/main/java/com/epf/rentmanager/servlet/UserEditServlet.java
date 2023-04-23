@@ -22,17 +22,10 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "UserServlet", urlPatterns = "/users/edit")
 public class UserEditServlet extends HttpServlet {
-    //private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
     @Autowired
     private ClientService clientservice;
-    @Autowired
-    private ReservationService reservationService;
 
-    @Autowired
-    private Client client;
-
-    @Autowired
-    private long id;
 
     @Override
     public void init() throws ServletException {
@@ -44,10 +37,12 @@ public class UserEditServlet extends HttpServlet {
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/edit.jsp").forward(request, response);
     }
-    //@Override
-    /*protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
+            long id;
+            Client client = new Client();
             String nom = request.getParameter("last_name");
             String prenom = request.getParameter("first_name");
             LocalDate dateN = LocalDate.parse(request.getParameter("date_nais"));
@@ -59,7 +54,7 @@ public class UserEditServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
         this.doGet(request,response);
-    }*/
+    }
 
 
 }

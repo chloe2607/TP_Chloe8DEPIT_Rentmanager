@@ -7,24 +7,27 @@ import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.service.ClientService;
 import com.epf.rentmanager.service.ReservationService;
 import com.epf.rentmanager.service.VehicleService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.context.support.SpringBeanAutowiringSupport;
-@WebServlet(name = "ReservationCreateServlet", urlPatterns = "/rents/create")
 
-public class ReservationCreateServlet extends HttpServlet{
-    //private static final long serialVersionUID = 1L;
+@WebServlet(name = "UserServlet", urlPatterns = "/rents/edit")
+public class ReservationEditServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
     @Autowired
     private ReservationService reservationService;
     @Autowired
@@ -39,9 +42,8 @@ public class ReservationCreateServlet extends HttpServlet{
     public void init() throws ServletException {
         super.init();
         SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
-        System.out.println("Resea create servlet OK");
+        System.out.println("Reservation edit servlet OK");
     }
-    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             request.setAttribute("client", clientService.findAll());
@@ -49,8 +51,9 @@ public class ReservationCreateServlet extends HttpServlet{
         } catch ( ServiceException e) {
             throw new RuntimeException(e);
         }
-        this.getServletContext().getRequestDispatcher("/WEB-INF/views/rents/create.jsp").forward(request, response);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/views/rents/edit.jsp").forward(request, response);
     }
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
@@ -64,7 +67,7 @@ public class ReservationCreateServlet extends HttpServlet{
             System.out.println(jour);
             r=new Reservation(v,c,fin,debut);
             List<Reservation> reservations = new ArrayList<Reservation>();
-boolean valeur=true;
+            boolean valeur=true;
             reservations=reservationService.findAll();
             for (int i=0; i<reservations.size();i++) {
                 if (reservations.get(i).getVehicle().equals(v) &&
@@ -75,25 +78,28 @@ boolean valeur=true;
             }
             while (!r.etreReserve()
                     || !valeur){
-                    //||reservationService.peutEtreReserve(v,debut) ){
+                //||reservationService.peutEtreReserve(v,debut) ){
                 idC= Integer.parseInt(request.getParameter("clientS"));
                 c= clientService.findById(idC);
                 idV= Integer.parseInt(request.getParameter("car"));
                 v=vehicleService.findById(idV);
-                 debut= LocalDate.parse(request.getParameter("begin"));
+                debut= LocalDate.parse(request.getParameter("begin"));
                 fin= LocalDate.parse(request.getParameter("end"));
 
                 r=new Reservation(v,c,fin,debut);
             }
+            reservationService.changeById(Long.parseLong(request.getParameter("id")),r);
 
-            request.setAttribute("reservation", reservationService.create(r));
+
+            // request.setAttribute("reservation", reservationService.create(r));
+
         } catch (DaoException e) {
             throw new RuntimeException(e);
-
         } catch (ServiceException e) {
             throw new RuntimeException(e);
         }
         this.doGet(request,response);
     }
+
 
 }

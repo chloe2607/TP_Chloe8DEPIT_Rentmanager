@@ -89,7 +89,7 @@ public class ReservationService {
             throw new RuntimeException(e);
         }
     }
-    public Reservation findResaByClientId(long id) throws DaoException{
+    public List<Reservation>  findResaByClientId(long id) throws DaoException{
         try {
             return this.reservationDao.findResaByClientId( id);
         } catch (DaoException e) {

@@ -102,12 +102,14 @@ public class ReservationDao {
 		//pb id Reservation toujours égal à 0
 
 		Reservation reservation =new Reservation();
-		reservation=this.findResaByClientId(id);
+		List<Reservation> reservationList = new ArrayList<Reservation>();
+		reservationList =this.findResaByClientId(id);
 
 		try {
 			Connection connection= ConnectionManager.getConnection();
 			PreparedStatement ps = connection.prepareStatement(DELETE_RESERVATION_QUERY);
-			ps.setLong(1,reservation.getId());
+			for (int i =0; i<reservationList.size();i++){
+			ps.setLong(1,reservationList.get(i).getId());}
 			ps.execute();
 			int row =ps.executeUpdate();
 			ps.close();
@@ -144,10 +146,11 @@ public class ReservationDao {
 
 
 	
-	public Reservation findResaByClientId(long clientId) throws DaoException {
+	public List<Reservation>  findResaByClientId(long clientId) throws DaoException {
 		Reservation reservation = new Reservation();
 		ClientService clientService=null;
 		VehicleService vehicleService = null;
+		List<Reservation> reservationList = new ArrayList<Reservation>();
 		try {
 			Connection connection= ConnectionManager.getConnection();
 			PreparedStatement preparedstatement = connection.prepareStatement(FIND_RESERVATIONS_BY_CLIENT_QUERY);
@@ -166,13 +169,14 @@ public class ReservationDao {
 				c=clientDao.findById(clientId);
 
 				reservation =new Reservation(v, c, f,  d, id);
+				reservationList.add(reservation);
 				//connection.close();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DaoException();
 		}
-		return reservation;
+		return reservationList;
 	}
 
 	public Reservation findResaByVehicleId(long vehicleId) throws DaoException {

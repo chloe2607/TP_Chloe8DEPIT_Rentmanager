@@ -2,6 +2,7 @@ package com.epf.rentmanager.servlet;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
+import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.service.ClientService;
 import com.epf.rentmanager.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,10 +40,17 @@ public class UserDeleteServlet extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
+            List<Reservation> reservationList = new ArrayList<Reservation>();
             //request.setAttribute("reservation", resaService.findAll());
             int id= Integer.parseInt(request.getParameter("id"));
-            clientservice.delete(id);
+            //clientservice.delete(id);
+            System.out.println(id);
+            reservationList=resaService.findResaByClientId(id);
+            for(int i=0;i<reservationList.size();i++ ){
+                System.out.println("quoicoube "+reservationList.get(i));
+            }
            resaService.deleteByClientId(id);
+            clientservice.delete(id);
            response.sendRedirect("/rentmanager/users");
         } catch (DaoException  e) {
             throw new RuntimeException(e);

@@ -196,4 +196,16 @@ public class ReservationService {
         }
 
     }
+
+    public boolean moinsDe30Jours(Vehicle v, int temps,LocalDate debut) throws DaoException {
+        // TODO: créer un véhicule
+        try {
+           return this.reservationDao.moinsDe30Jours( v,temps,debut);
+        } catch (DaoException e) {
+            e.printStackTrace();
+            throw new DaoException();
+
+        }
+
+    }
 }

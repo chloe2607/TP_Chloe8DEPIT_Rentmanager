@@ -2,6 +2,7 @@ package com.epf.rentmanager.dao;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -425,4 +426,41 @@ public class ReservationDao {
 		}
 
 	}
-}
+
+	public boolean moinsDe30Jours(Vehicle v, int temps, LocalDate debut) throws DaoException {
+		List<Reservation> reservations = new ArrayList<Reservation>();
+		reservations = this.findAll();
+		int duree = 0;
+		if (reservations.get(0).getVehicle().getId() == v.getId()) {
+			duree = duree + Period.between(reservations.get(0).getDebut(), reservations.get(0).getFin()).getDays();
+			if (duree >= 30) {
+				return false;
+			}
+		}
+			for (int i = 1; i < reservations.size(); i++) {
+				if (reservations.get(i).getVehicle().getId() == v.getId()) {
+					if (reservations.get(i - 1).getFin().equals(reservations.get(i).getDebut()) && reservations.get(i - 1).getVehicle().getId() == reservations.get(i).getVehicle().getId()) {
+						duree = duree + Period.between(reservations.get(i).getDebut(), reservations.get(i).getFin()).getDays();
+
+					}
+
+					if (reservations.get(i).getFin().equals(debut)) {
+						duree = duree + Period.between(reservations.get(i).getDebut(), reservations.get(i).getFin()).getDays();
+
+					}
+					if (duree >= 30) {
+						return false;
+					}
+				}
+			}
+
+
+			if (duree + temps >= 30) {
+				return false;
+
+
+			}
+			return true;
+		}
+
+	}

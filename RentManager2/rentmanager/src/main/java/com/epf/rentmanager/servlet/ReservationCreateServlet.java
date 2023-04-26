@@ -23,7 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 @WebServlet(name = "ReservationCreateServlet", urlPatterns = "/rents/create")
 
-public class ReservationCreateServlet extends HttpServlet{
+public class ReservationCreateServlet extends HttpServlet {
     //private static final long serialVersionUID = 1L;
     @Autowired
     private ReservationService reservationService;
@@ -41,49 +41,51 @@ public class ReservationCreateServlet extends HttpServlet{
         SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
         System.out.println("Resea create servlet OK");
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             request.setAttribute("client", clientService.findAll());
             request.setAttribute("vehicle", vehicleService.findAll());
-        } catch ( ServiceException e) {
+        } catch (ServiceException e) {
             throw new RuntimeException(e);
         }
         this.getServletContext().getRequestDispatcher("/WEB-INF/views/rents/create.jsp").forward(request, response);
     }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
-            int idC= Integer.parseInt(request.getParameter("clientS"));
-            c= clientService.findById(idC);
-            int idV= Integer.parseInt(request.getParameter("car"));
-            v=vehicleService.findById(idV);
-            LocalDate debut= LocalDate.parse(request.getParameter("begin"));
-            LocalDate fin= LocalDate.parse(request.getParameter("end"));
+            int idC = Integer.parseInt(request.getParameter("clientS"));
+            c = clientService.findById(idC);
+            int idV = Integer.parseInt(request.getParameter("car"));
+            v = vehicleService.findById(idV);
+            LocalDate debut = LocalDate.parse(request.getParameter("begin"));
+            LocalDate fin = LocalDate.parse(request.getParameter("end"));
             int jour = Period.between(debut, fin).getDays();
             System.out.println(jour);
-            r=new Reservation(v,c,fin,debut);
+            r = new Reservation(v, c, fin, debut);
             List<Reservation> reservations = new ArrayList<Reservation>();
-boolean valeur=true;
-            reservations=reservationService.findAll();
-            for (int i=0; i<reservations.size();i++) {
+            boolean valeur = true;
+            reservations = reservationService.findAll();
+            for (int i = 0; i < reservations.size(); i++) {
                 if (reservations.get(i).getVehicle().equals(v) &&
                         reservations.get(i).getDebut().equals(debut)) {
-                    System.out.println("c'est mort");
-                    valeur=false;
+                    valeur = false;
                 }
             }
-            while (!r.etreReserve()
-                    || !valeur){
-                    //||reservationService.peutEtreReserve(v,debut) ){
-                idC= Integer.parseInt(request.getParameter("clientS"));
-                c= clientService.findById(idC);
-                idV= Integer.parseInt(request.getParameter("car"));
-                v=vehicleService.findById(idV);
-                 debut= LocalDate.parse(request.getParameter("begin"));
-                fin= LocalDate.parse(request.getParameter("end"));
 
-                r=new Reservation(v,c,fin,debut);
+            while (!r.etreReserve()
+                    || !valeur
+                    || !reservationService.moinsDe30Jours(v, jour, debut)) {
+                idC = Integer.parseInt(request.getParameter("clientS"));
+                c = clientService.findById(idC);
+                idV = Integer.parseInt(request.getParameter("car"));
+                v = vehicleService.findById(idV);
+                debut = LocalDate.parse(request.getParameter("begin"));
+                fin = LocalDate.parse(request.getParameter("end"));
+
+                r = new Reservation(v, c, fin, debut);
             }
 
             request.setAttribute("reservation", reservationService.create(r));
@@ -93,7 +95,8 @@ boolean valeur=true;
         } catch (ServiceException e) {
             throw new RuntimeException(e);
         }
-        this.doGet(request,response);
-    }
+        this.doGet(request, response);
 
+
+    }
 }

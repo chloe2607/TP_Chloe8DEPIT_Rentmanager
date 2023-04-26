@@ -1,6 +1,7 @@
 package com.epf.rentmanager.servlet;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.model.Client;
+import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.service.ClientService;
 import com.epf.rentmanager.service.ReservationService;
 import com.epf.rentmanager.service.VehicleService;
@@ -25,6 +26,8 @@ public class VehiclesDeleteServlet extends HttpServlet{
    @Autowired
     private VehicleService vehicleservice;
 
+    @Autowired
+    private ReservationService resaService;
 
 
     @Override
@@ -36,7 +39,11 @@ public class VehiclesDeleteServlet extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
+
+            List<Reservation> reservationList = new ArrayList<Reservation>();
             int id= Integer.parseInt(request.getParameter("id"));
+            reservationList=resaService.findResaByClientId(id);
+            resaService.deletefindResaByVehicleId(id);
             vehicleservice.delete(id);
             response.sendRedirect("/rentmanager/vehicles");
         } catch (DaoException e) {

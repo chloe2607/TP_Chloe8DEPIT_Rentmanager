@@ -43,12 +43,7 @@ public class UserDeleteServlet extends HttpServlet{
             List<Reservation> reservationList = new ArrayList<Reservation>();
             //request.setAttribute("reservation", resaService.findAll());
             int id= Integer.parseInt(request.getParameter("id"));
-            //clientservice.delete(id);
-            System.out.println(id);
             reservationList=resaService.findResaByClientId(id);
-            for(int i=0;i<reservationList.size();i++ ){
-                System.out.println("quoicoube "+reservationList.get(i));
-            }
            resaService.deleteByClientId(id);
             clientservice.delete(id);
            response.sendRedirect("/rentmanager/users");

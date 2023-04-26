@@ -81,7 +81,7 @@ public class ReservationService {
         }
 
     }
-    public Reservation findResaByVehicleId(long id) throws DaoException{
+    public List<Reservation> findResaByVehicleId(long id) throws DaoException{
         try {
             return this.reservationDao.findResaByVehicleId(id);
         } catch (DaoException e) {
